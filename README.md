@@ -39,7 +39,11 @@ pnpm run build
 pnpm preview
 ```
 
-构建产物会写入 `dist/`，该目录已被 Git 忽略。
+预览命令会自动打开 `ffmpeg.web.html`；预览服务器的根路径也会自动跳转到该文件。
+
+构建产物会写入 `dist/`，主页文件名为 `ffmpeg.web.html`，该目录已被 Git 忽略。
+
+> 不要直接双击打开 `dist/ffmpeg.web.html`。该应用使用 ES Module、Web Worker 与 WebAssembly，浏览器会在 `file://` 协议下限制这些能力。请使用下方的预览服务器，或将整个 `dist/` 目录部署到任意静态 Web 服务器。
 
 ## 使用说明
 
@@ -47,6 +51,10 @@ pnpm preview
 2. 选择输出格式。
 3. 点击“开始转换”。首次转换会下载 FFmpeg WebAssembly 核心。
 4. 等待进度完成，然后点击“下载文件”。
+
+## 配置 GitHub 与友链
+
+编辑 `src/config/site.ts`：修改 `githubUrl` 可设置导航栏 GitHub 图标地址；在 `friendLinks` 中添加 `{ name, url }` 条目，导航栏会自动展示友链。留空数组即可隐藏友链区域。
 
 ## 注意事项
 

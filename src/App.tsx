@@ -1,6 +1,7 @@
 import {
   ChevronDown,
   FileVideo,
+  Github,
   LockKeyhole,
   SlidersHorizontal,
   Sparkles,
@@ -9,6 +10,7 @@ import {
 import { useRef, useState } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
+import { siteConfig } from "./config/site";
 
 type OutputFormat = "mp4" | "webm" | "mp3" | "wav" | "gif";
 type Quality = "high" | "balanced" | "compact";
@@ -221,9 +223,29 @@ export default function App() {
           </span>
           <span>转码工坊</span>
         </a>
-        <span className="local-pill">
-          <LockKeyhole size={14} /> 100% 本地处理
-        </span>
+        <div className="nav-actions">
+          {siteConfig.friendLinks.length > 0 && (
+            <div className="nav-friend-links" aria-label="友情链接">
+              {siteConfig.friendLinks.map((link) => (
+                <a key={link.url} href={link.url} target="_blank" rel="noreferrer">
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          )}
+          <span className="local-pill">
+            <LockKeyhole size={14} /> 100% 本地处理
+          </span>
+          <a
+            className="github-link"
+            href={siteConfig.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="在 GitHub 查看项目"
+          >
+            <Github size={17} />
+          </a>
+        </div>
       </nav>
       <section id="top" className="hero">
         <div className="eyebrow">
